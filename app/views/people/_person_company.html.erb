@@ -1,0 +1,9 @@
+<p class="fields">
+  <%= fields_for_person_company(person_company) do |com| %>
+        <%= com.hidden_field :id %>
+        <%= com.check_box :active  %>
+        <%= com.select :company_id, Company.all.collect {|c| [ c.name, c.id ] } %>
+        <%= com.hidden_field :_destroy %>
+        <%= link_to_function "remove", "remove_fields(this)" %>
+  <%end%>
+</p>

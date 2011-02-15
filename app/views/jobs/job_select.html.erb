@@ -1,0 +1,25 @@
+<% content_for :left do %>
+  <p>Recruiting? Great! Add your job description and needs regarding the
+    position to the form on the right.</p>
+
+  <p>Start off with choosing your company from the list, if it's not there yet
+    - no worries, <%= link_to "add it here", new_company_path %> .</p>
+
+  <p>Once it's added, fill in the position, location, whether it's a part time
+    job or a full-time job, what's required from the perso applying
+    (description), compensation, applying instructions and when you want your
+    job application to expire. Once a job post has expired, it will not be
+    shown to the public anymore.</p>
+
+  <p>Once you have filled in all the information, hit the submit button. If you
+    had a typo in the form, just hit the edit button on the next page and you
+    can go back and change whatever you need to.</p>
+<%  end %>
+
+
+<div class="select_job_links"
+     <%= link_to "I'm a company looking for great people to hire", :action => "new", :job_type => 'company' %><br />
+     <%= link_to "I'm an individual looking for co-founder(s) / a great startup to join ", :action => "new", :job_type => 'person' %>
+</div>
+  <%= link_to "Back", :action => "index" %>
+

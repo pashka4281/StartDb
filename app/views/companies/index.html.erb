@@ -1,0 +1,53 @@
+<h1>Companies</h1>
+
+<% content_for :left do %>
+  <a href="/companies.rss"><img src="/images/rss.png" style="position:relative;top:2px" border="0" /> RSS for companies</a><br/><br/>
+  <h3>Contribute</h3>
+
+  <p><%= link_to "Add New Company »", new_company_path, :class=>'app'%></p>
+
+  <h3>Filter companies</h3>
+  By nationality<br/>
+  <p>
+    <% for c in @countries do %>
+        <%= link_to "#{c.name} (#{c.companies.count})", "/companies?search[nationality_id]=#{c.id}" , :class => "app" %><br />
+      <% end %>
+    </p>
+
+    By type<br/>
+    <p>
+      <% for c in @categories do %>
+          <%= link_to "#{c.name} (#{c.companies.count})", "/companies?search[category_id]=#{c.id}" , :class => "app" %><br />
+        <% end %>
+      </p>
+    <%  end %>
+
+    <table class="companylist">
+      <tbody>
+        <% @companies.order('name').group_by{|x| x.name[0...1]}.each do |x,y|  %>
+          <tr>
+            <td colspan="3">
+              <h4><%= x.upcase %></h4>
+            </td>
+          </tr>
+          <%  y.in_groups_of(2, false) do |companies| %>
+            <tr>
+              <% for comp in companies %>
+                <td><%= link_to comp.name, comp %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        <%  end %>
+      </tbody>
+    </table>
+
+
+
+    <% content_for :right do %>
+      <h3>Recently added</h3>
+      <ul class="sidenews">
+        <% for c in @recent_companies %>
+          <li><%= link_to c.name, c %></li>
+        <% end %>
+      </ul>
+    <%  end %>

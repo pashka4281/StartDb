@@ -1,0 +1,302 @@
+/*
+ @colors:
+ @orange: #f7941e
+ @darkblue: #0867a9
+ @darkgrey: #333333
+ @lightgrey: #eeeeee
+*/
+
+.select_job_links{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/*errors messages*/
+
+.field_with_errors {
+  padding: 2px;
+  background-color: #fda6a6;
+  display: table;
+}
+
+.fieldWithErrors label {
+  color: #fff;
+}
+
+#errorExplanation {
+  width: 350px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #770101;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: none;
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+
+
+#flash_error{
+    background-attachment: scroll;
+    background-color: #ffeef0;
+    border: 1px solid #CC9999;
+    color: #663333;
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+    position: relative;
+    text-align: center;
+    top: 20px;
+}
+
+#flash_notice{
+    background-attachment: scroll;
+    background-color: #EEFFEE;
+    border: 1px solid #99CC99;
+    color: #336633;
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+    position: relative;
+    text-align: center;
+    top: 20px;
+}
+
+body {
+    background: url(/images/site-bg.png) repeat-x #dceffa;
+    font: 12px/18px Arial,"Lucida Grande",Geneva,Verdana,sans-serif;
+    color:#333;
+}
+h2 {
+    font-size: 18px;
+    letter-spacing: -1px;
+    margin-top: 20px;
+    padding-bottom: 3px;
+}
+h1,h2 {
+    color: #f7941e;
+    border-bottom: 4px solid #eee;
+    margin-bottom:5px;
+    font-weight:normal;
+}
+h3 {
+    border-bottom: 2px solid #eee;
+    color: #4f4f4f;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0 0 5px 0;
+    padding:0 0 3px 0;
+}
+
+h4 {
+    font-size:14px;
+    border-bottom:1px solid #eee;
+    margin-top:10px;
+}
+
+a {
+    color:#0867a9;
+    text-decoration:none;
+}
+
+a:hover {text-decoration:underline;;}
+
+p {
+    padding: 0 0 15px;
+}
+
+table td {padding: 3px ;}
+
+.app {color:#f7941e; font-size:16px; line-height:24px;}
+.selected {font-weight:bold;}
+
+.morelink {margin:5px 0; text-align:right; color:#f7941e; display:block;}
+/* div layout --------------------------- */
+#wrap {
+    margin: 0 auto;
+    padding-top: 40px;
+    width: 990px;
+}
+#header {
+
+}
+
+#header h1 {
+    width:400px;
+    float:left;
+    border:0;
+}
+
+#header ul {
+    float: right;
+    margin-right: 10px;
+}
+
+
+#header ul li {
+    float: left;
+    margin-left: 0;
+}
+#header ul a {
+    background: #fafdff;
+    color: #4f4f4f;
+    font-weight: bold;
+    display: block;
+    padding: 8px 15px;
+    margin:0 1px;
+    font-size:16px;
+    text-decoration: none;
+}
+
+#header li#login a {background:transparent; font-weight:normal; font-size:14px; text-decoration:underline;}
+#header .active a {background:#fff; color:#f7941e;}
+
+#header ul a:hover {
+    color: #f7941e;
+}
+#search {
+    float:right;
+    right:0;
+    top:110px;
+}
+
+#search_s {display:none;}
+
+#search_i {
+    width: 240px;
+    padding:10px 30px 0 10px;
+    height:22px;
+    margin-bottom:20px;
+    border:0;
+    background:url(/images/search-bg.png) no-repeat;
+}
+#content {
+    background: #fff;
+    clear: both;
+    overflow: hidden;
+    padding: 5px 0 15px 0;
+    border-right:1px solid #c8d9e3;
+    border-bottom:1px solid #c8d9e3;
+    margin-left:1px;
+}
+#content h1 {
+    font-size: 20px;
+    letter-spacing: -1px;
+    margin-top: 0px;
+    margin-bottom:5px;
+    padding-bottom: 3px;
+}
+
+#login_box {
+    text-align: center;
+}
+#login_box_etusivu {
+    width: 100px;
+}
+.notice {margin:0; padding:2px 5px; width:460px; margin:0 auto; text-align:center;}
+
+/* register form -------------------------- */
+form input {
+    margin: 5px 0 5px 0;
+}
+#email {
+    border: 1px solid #999;
+    margin-left: 60px;
+}
+#email:focus {
+    background: #F6FAFC;
+}
+#password {
+    border: 1px solid #999;
+    margin-left: 36px;
+}
+#password:focus {
+    background: #F6FAFC;
+}
+
+.etusivusisennys {
+    margin-left: 0;
+}
+#password_confirmation {
+    border: 1px solid #999;
+    margin-left: 36px;
+}
+#password_confirmation:focus {
+    background: #F6FAFC;
+}
+
+/* sidebar => right ---------------------- */
+
+
+ul.sidenews {margin-bottom:15px;}
+ul.sidenews li {
+    border-bottom: 1px solid #eee;
+    padding:6px 0 2px 0;
+}
+ul.sidenews li a {
+    display: block;
+    line-height:15px;
+}
+ul.sidenews li span {
+    font-size: smaller;
+    color:#666;
+}
+#footer {
+}
+/* jobs ---------------------------------- */
+table.jobs {margin:5px;}
+table.jobs th {color:#666;}
+table.jobs td {padding:5px 0; border-bottom:1px solid #eee;}
+
+/* classes ------------------------------- */
+.hide {display: none;}
+.hidden {visibility: hidden;}
+.clear {clear: both;}
+
+/* columns 12-cols ----------------------- */
+.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11,.c12 {float: left;margin: 0 12px;}
+.c2{width:100px;}.c3{width:160px;}.c4{width:225px;}.c5{width:280px;}.c6{width:340px;}.c7{width:400px;}.c8{width:460px;}.c9{width:520px;}.c10{width:580px;}.c11{width:640px;}.c12{width:700px;}.c13{width:760px;}.c14{width:820px;}.c15{width:880px;}.c16{width:940px;}
+.filler:after {
+    color: transparent;
+    content: ".";
+}
+
+td {
+    padding-left:5px;
+}
+
+.companylist {width:100%;}
+.companylist td {padding:5px 15px 5px 0;}
+
+.joblist {width:100%;}
+.joblist th {text-align:left;}
+.joblist td {padding:5px 3px;}
+.joblist .odd td {background:#eee;}
+
+#arcticstartup {text-align:center; }
+#kisko {text-align:center; margin-top:50px; padding-top:10px; border-top:1px solid #eee;}

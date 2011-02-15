@@ -1,0 +1,25 @@
+<h1>Search results</h1>
+
+<% content_for :left do %>
+  Welcome to ArcticIndex, the primary information resource of Nordic and Baltic startups and
+  the entrepreneurs behind them. This is your one stop shop for getting the latest informationon these companies and people, whatever your need.
+  ArcticIndex allows anyone to register themselves or add new companies and people to the database.
+  All you need to do is signup with your e-mail, activate it and you're set to go.
+  Please note that we're only taking the first steps with this product, so everything might not be in top notch condition just yet.
+  Please let us know if you have any questions or suggestions regarding the site, we're more than happy
+  to help and listen to any wishes you may have.
+<%  end %>
+
+<h2>Matching companies</h2>
+<ul>
+  <% for c in @companies %>
+    <li><%= link_to h(c.name), c%></li>
+  <%  end %>
+</ul>
+<h2>Matching people</h2>
+
+<ul>
+  <% for p in @people %>
+    <li><%= link_to h(p.name), p%></li>
+  <%  end %>
+</ul>

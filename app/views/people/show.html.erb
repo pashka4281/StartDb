@@ -1,0 +1,51 @@
+<% content_for :left do %>
+  <p>
+    <%= image_tag @person.picture.url(:big) %>
+  </p>
+
+  <h3>Academic Degrees</h3>
+  <%= simple_format(h(@person.academic_degrees)) %>
+
+  <h3>Nationality</h3>
+  <p><%= @person.country.name %></p>
+
+
+<%  end %>
+
+<h1><%=h @person.name %></h1>
+<p>
+  <%= link_to "Edit", edit_person_path(@person) %> |
+  <%= link_to "Report Abuse", abuses_path(:id => @person.id, :type => @person.class.to_s), :method=>:post %>
+</p>
+
+<% if @person.overview %>
+  <p>
+    <%=  simple_format(h(@person.overview))%>
+  </p>
+<% end %>
+
+<h2>Current companies</h2>
+<% current_comp =  @person.current_companies %>
+<% if current_comp.any? %>
+  <% for c in current_comp %>
+    <%= link_to c.name, c %><br />
+  <% end %>
+<%else%>
+  No companies
+<%end%>
+
+
+<h2>Previous companies</h2>
+<% incurrent_comp =  @person.incurrent_companies %>
+<% if incurrent_comp.any? %>
+  <% for c in @person.incurrent_companies %>
+    <%= link_to c.name, c %><br />
+  <% end %>
+<%  else %>
+  No companies
+<% end %>
+
+
+  <h2>Links</h2>
+
+<%=raw person_links(@person) %>

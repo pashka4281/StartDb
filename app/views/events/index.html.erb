@@ -1,0 +1,42 @@
+<h1>Coming Events</h1>
+
+<% content_for :left do %>
+  <a href="/events.rss">
+    <img border="0" style="position: relative; top: 2px;" src="/images/rss.png" /> RSS for events
+  </a>
+  <br />
+  <br />
+  <%= link_to 'Add new event »', new_event_path, :class => 'app' %>
+<%  end %>
+
+<table class="joblist">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Venue</th>
+      <th>Date and time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.group_by{|x| x.taken_at.beginning_of_day}.each do |day, events| %>
+      <tr>
+        <td colspan="3"><h4><%= events.first.taken_at.to_s(:simple_date) %></h4></td>
+      </tr>
+      <% for e in events %>
+        <tr class="info">
+          <td><b><%= link_to e.name, e %></b></td>
+          <td>
+            <%=h simple_format(e.venue) %>
+          </td>
+          <td><%=  e.taken_at.to_s(:client_reports)  %></td>
+        </tr>
+      <%  end %>
+    <%  end %>
+
+  </tbody>
+</table>
+
+<script>
+  $("tr.info:odd").attr('class', 'odd');
+  $("tr.info:even").attr('class', 'even');
+</script>

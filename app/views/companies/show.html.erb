@@ -1,0 +1,63 @@
+<% content_for :left do %>
+
+  <%= image_tag @company.picture.url(:big) %>
+
+  <h3>General information</h3>
+
+  <table>
+    <tbody><tr>
+        <td><strong>Website</strong></td>
+        <td> <%= link_to @company.name, @company.website %></td>
+      </tr>
+      <tr>
+        <td><strong>Blog</strong></td>
+        <td><%=link_to @company.blog, @company.blog %></td>
+      </tr>
+      <tr>
+        <td><strong>Category</strong></td>
+        <td><%= link_to @company.category.name, "/companies?search[category_id]=#{@company.category.id}"  %></td>
+      </tr>
+      <tr>
+        <td><strong>Phone</strong></td>
+        <td><%=h @company.phone %></td>
+      </tr>
+      <tr>
+        <td><strong>Employees</strong></td>
+        <td><%=h @company.employers %></td>
+      </tr>
+      <tr>
+        <td><strong>Country</strong></td>
+        <td><%=h @company.country.name %></td>
+      </tr>
+      <tr>
+        <td><strong>City</strong></td>
+        <td><%=h @company.city %></td>
+      </tr>
+
+      <tr>
+        <td><strong>Founded</strong></td>
+        <td><%=@company.founded_at.strftime('%b, %Y') %> </td>
+      </tr>
+
+    </tbody>
+  </table>
+<%  end %>
+
+<h1><%=h @company.name %></h1>
+<p>
+  <%= link_to "Edit", edit_company_path(@company) %> |
+  <%= link_to "Report Abuse", abuses_path(:id => @company.id, :type => @company.class.to_s), :method=>:post %>
+</p>
+
+<p>
+  <%= simple_format(h(@company.description))%>
+</p>
+
+
+<% current_peopl = @company.current_people %>
+<% if current_peopl.any? %>
+  <h2>Currently associated people</h2>
+  <%for p in current_peopl %>
+    <%= link_to p.name, p %><br />
+  <%  end %>
+<% end %>

@@ -1,0 +1,63 @@
+<h1>What are you looking for?</h1>
+
+<% path = @new ? jobs_path : job_path(@job) %>
+<%= form_for @job, :url => path do |f| %>
+  <% if @job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+      <ul>
+        <% @job.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :person_id, 'Person'%>
+    <%= f.select :person_id,  Person.all.collect {|p| [ p.name, p.id ] }%>
+  </p>
+  <p>
+    Can't find your profile? <%= link_to "Add it to the index", new_person_path %>.
+  </p>
+
+  <p>
+    <input type="radio" value="true" name="job_person[cofounders]" id="founder_founder_true" checked="checked" /> co-founders?<br />
+    <input type="radio" value="false" name="job_person[cofounders]" id="founder_founder_false" /> a great startup to join
+  </p>
+ 
+  <p>
+    <%= f.label :skill_set, 'Your skillset (What you bring to the table)' %><br />
+    <%= f.text_area :skill_set %>
+  </p>
+
+  <p>
+    <%= f.label :ideal_skill_set, 'Ideal Skillset In Your Co-founder / Ideal Startup To Join' %><br />
+    <%= f.text_area :ideal_skill_set %>
+  </p>
+
+  <p>
+    <%= f.label :area_of_interests %><br />
+    <%= f.text_area :area_of_interests %>
+  </p>
+
+  <p>
+    <%= f.label :other_comments %><br />
+    <%= f.text_area :other_comments %>
+  </p>
+
+  <p>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </p>
+
+  <p>
+    <%= f.label :last_application_date %><br />
+    <%= f.date_select :last_application_date %>
+  </p>
+
+
+  
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>

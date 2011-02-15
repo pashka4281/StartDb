@@ -1,0 +1,87 @@
+<% content_for :left do %>
+
+  <%= image_tag @job.company.picture.url(:big) %>
+
+  <h3>General information</h3>
+
+  <table>
+    <tbody><tr>
+        <td><strong>Website</strong></td>
+        <td> <%= link_to @job.company.name, @job.company.website %></td>
+      </tr>
+      <tr>
+        <td><strong>Blog</strong></td>
+        <td><%=link_to @job.company.blog, @job.company.blog %></td>
+      </tr>
+      <tr>
+        <td><strong>Category</strong></td>
+        <td><%= link_to @job.company.category.name, "/companies?search[category_id]=#{@job.company.category.id}" %></td>
+      </tr>
+      <tr>
+        <td><strong>Phone</strong></td>
+        <td><%=h @job.company.phone %></td>
+      </tr>
+      <tr>
+        <td><strong>Employees</strong></td>
+        <td><%=h @job.company.employers %></td>
+      </tr>
+      <tr>
+        <td><strong>Country</strong></td>
+        <td><%=h @job.company.country.name %></td>
+      </tr>
+      <tr>
+        <td><strong>City</strong></td>
+        <td><%=h @job.company.city %></td>
+      </tr>
+
+      <tr>
+        <td><strong>Founded</strong></td>
+        <td><%=@job.company.founded_at.strftime('%b, %Y') %> </td>
+      </tr>
+
+    </tbody>
+  </table>
+<%  end %>
+
+
+<h1><%= link_to "Jobs » ", jobs_path, :class => 'app' %><%=h @job.position %></h1>
+
+<p>
+  <strong>Company:</strong>
+  <%= link_to @job.company.name, @job.company %><br />
+  <strong>Position:</strong>
+  <%=h @job.position %><br />
+  <strong>Location:</strong>
+  <%=h @job.location %><br />
+  <strong>Job Type:</strong>
+  <%= @job.full_time ? 'Full time' : 'Part time' %><br />
+</p>
+
+<h4>Description:</h4>
+<%= simple_format(h(@job.description)) %>
+<p>
+  <strong>Compensation:</strong>
+  <%=h @job.compensation %><br />
+  <strong>Created:</strong>
+  <%= @job.created_at.to_s(:simple_date) %>
+</p>
+
+<h4>To apply</h4>
+<p>
+  <%=h @job.applying_instructions %>
+</p>
+
+<p>
+  <strong>Last application date:</strong>
+  <%= @job.last_application_date.to_s(:simple_date) %><br />
+</p>
+
+<% if it_my_job_posting?(@job) or current_user && current_user.admin? %>
+  <p>
+    <%= link_to 'Edit', edit_job_path(@job) %> | <%= link_to 'Back to jobs', jobs_path %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to 'Back to jobs', jobs_path %>
+  </p>
+<% end %>

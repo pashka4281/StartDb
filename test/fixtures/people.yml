@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  overview: MyText
+  academic_degrees: MyText
+  nationality: MyString
+  blog_feed: MyString
+  link1_name: MyString
+  link1_url: MyString
+
+two:
+  name: MyString
+  overview: MyText
+  academic_degrees: MyText
+  nationality: MyString
+  blog_feed: MyString
+  link1_name: MyString
+  link1_url: MyString

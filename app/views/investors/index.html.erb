@@ -1,0 +1,44 @@
+<h1>Listing people</h1>
+
+<% content_for :left do %>
+  <a href="/people.rss"><img src="/images/rss.png" style="position:relative;top:2px" border="0" /> RSS for people</a><br/><br/>
+  <h3>Contribute</h3>
+
+  <p><%= link_to "Add New Person »", new_person_path, :class=>'app'%></p>
+
+  <h3>Filter people</h3>
+  By nationality<br/>
+  <p>
+    <a href="/people?search%5Bnationality_id%5D=1" class="app">Iceland (2)</a><br/>
+    <a href="/people?search%5Bnationality_id%5D=2" class="app">Norway (3)</a><br/>
+    <a href="/people?search%5Bnationality_id%5D=3" class="app">Denmark (12)</a><br/>
+    <a href="/people?search%5Bnationality_id%5D=4" class="app">Sweden (34)</a><br/>
+    <a href="/people?search%5Bnationality_id%5D=5" class="app">Finland (171)</a><br/>
+    <a href="/people?search%5Bnationality_id%5D=6" class="app">Russia (1)</a><br/>
+    <a href="/people?search%5Bnationality_id%5D=7" class="app">Estonia (15)</a><br/>
+    <a href="/people?search%5Bnationality_id%5D=8" class="app">Lithuania (4)</a><br/>
+    <a href="/people?search%5Bnationality_id%5D=9" class="app">Latvia (2)</a><br/>
+    <a href="/people?search%5Bnationality_id%5D=10" class="app">Other (36)</a><br/>
+  </p>
+<%  end %>
+
+
+<table class="companylist">
+  <tbody>
+    <% Person.investors.order('name').group_by{|x| x.name[0...1]}.each do |x,y|  %>
+      <tr>
+        <td colspan="3">
+          <h4><%= x %></h4>
+        </td>
+      </tr>
+      <%  y.in_groups_of(2, false) do |persons| %>
+        <tr>
+          <% for pers in persons %>
+            <td><%= link_to pers.person_name, pers %></td>
+          <% end %>
+        </tr>
+
+      <% end %>
+    <%  end %>
+  </tbody>
+</table>

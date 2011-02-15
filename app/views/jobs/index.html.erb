@@ -1,0 +1,82 @@
+<h1>Open positions</h1>
+
+<% content_for :left do %>
+
+  <a href="/jobs.rss"><img border="0" style="position: relative; top: 2px;" src="/images/rss.png" /> RSS for jobs</a>
+  <br /><br />
+  <%= link_to "Add new job or job/co-founder application »", job_select_path, :class => 'app' %><br />
+  <a href="#open_positions" class="app">Open Positions</a><br />
+  <a href="#cofounders_wanted" class="app">Co-founders Wanted / Want to Join Startup</a><br />
+<%  end %>
+
+<table class="joblist">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Position</th>
+      <th>Last date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @all_jobs.select{|x| x if x.is_a?(JobCompany)}.group_by{|x| x.created_at.beginning_of_day}.each do |day, jobs| %>
+      <tr>
+        <td colspan="3"><h4><%= jobs.first.created_at.to_s(:simple_date) %></h4></td>
+      </tr>
+      <% for j in jobs %>
+        <tr class="info">
+          <td>
+            <b>
+              <%= link_to j.company.name, j.company %>
+            </b>
+          </td>
+          <td>
+            <%=link_to j.position, job_path(j) %>
+          </td>
+          <td>
+            <%=  j.last_application_date.to_s(:client_reports)  %>
+          </td>
+        </tr>
+      <%  end %>
+    <%  end %>
+  </tbody>
+</table>
+  <br />
+
+  <h1>Looking for founders / startups</h1>
+
+<table class="joblist">
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th>Looking for</th>
+      <th>Last date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @all_jobs.select{|x| x if x.is_a?(JobPerson)}.group_by{|x| x.created_at.beginning_of_day}.each do |day, jobs| %>
+      <tr>
+        <td colspan="3"><h4><%= jobs.first.created_at.to_s(:simple_date) %></h4></td>
+      </tr>
+      <% for j in jobs %>
+        <tr class="info">
+          <td>
+            <b>
+              <%= link_to j.person.name, j.person %>
+            </b>
+          </td>
+          <td>
+            <%= link_to j.cofounders ? 'co-founder' : 'a great sturtup to join', job_path(j) %>
+          </td>
+          <td>
+            <%=  j.last_application_date.to_s(:client_reports)  %>
+          </td>
+        </tr>
+      <%  end %>
+    <%  end %>
+  </tbody>
+</table>
+
+<script>
+  $("tr.info:odd").attr('class', 'odd');
+  $("tr.info:even").attr('class', 'even');
+</script>

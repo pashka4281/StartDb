@@ -1,0 +1,190 @@
+<% content_for :left do %>
+  <h3>About</h3>
+  <p>
+    Welcome to ArcticIndex, the primary information resource of Nordic and Baltic startups and the entrepreneurs behind them.
+    This is your one stop shop for getting the latest information on these companies and people, whatever your need.
+  </p>
+  <h3>Contribute</h3>
+  <p>
+    <a href="/companies/new" class="app">Add Company »</a> <br />
+    <a href="/people/new" class="app">Add Person »</a> <br />
+    <a href="/jobs/new" class="app">Add Job »</a> <br />
+    <a href="/events/new" class="app">Add Event »</a> <br />
+  </p>
+<%  end %>
+
+<%= link_to signup_path do %>
+  <% image_tag 'signup_button.png' %>
+<%  end %>
+
+
+<div class="etusivusisennys">
+  <h2>Recent companies</h2>
+
+  <table>
+    <tr>
+      <% for c in @last_companies[0..3] do %>
+          <td align="center" style="padding:10px;">
+            <%= link_to c do %>
+              <%= image_tag c.picture.url(:thumb) %>
+            <% end %><br/>
+            <%= link_to c.name, c %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <% for c in @last_companies[4..-1] do %>
+            <td align="center" style="padding:10px;">
+              <%= link_to c do %>
+                <%= image_tag c.picture.url(:thumb) %>
+              <% end %><br/>
+              <%= link_to c.name, c %>
+            </td>
+          <% end %>
+        </tr>
+      </table>
+
+      <a href="/companies" class="morelink">More companies &raquo;</a>
+    </div>
+
+    <div class="etusivusisennys">
+
+      <h2>Recent people</h2>
+      <table>
+        <tr>
+          <% for c in @last_people[0..3] do %>
+              <td align="center" style="padding:10px;">
+                <%= link_to c do %>
+                  <%= image_tag c.picture.url(:thumb) %>
+                <% end %><br/>
+                <%= link_to c.name, c %>
+              </td>
+            <% end %>
+          </tr>
+          <tr>
+            <% for c in @last_people[4..-1] do %>
+                <td align="center" style="padding:10px;">
+                  <%= link_to c do %>
+                    <%= image_tag c.picture.url(:thumb) %>
+                  <% end %><br/>
+                  <%= link_to c.name, c %>
+                </td>
+              <% end %>
+            </tr>
+          </table>
+          <a href="/people" class="morelink">More people &raquo;</a>
+
+        </div>
+
+
+        <div class="etusivusisennys">
+
+          <h2>Recent jobs</h2>
+          <table class="jobs"width="100%">
+            <thead>
+            <th align="left">Company</th>
+            <th align="left">Position</th>
+            <th>Location</th>
+
+            </thead>
+            <tbody>
+
+
+              <tr>
+                <td>
+                  <a href="/jobs/329">Tuxera</a>
+                </td>
+                <td><a href="/jobs/329">GUI Specialist and Qt Developer</a></td>
+                <td align="center" style="padding:0">Helsinki</td>
+
+              </tr>
+
+              <tr>
+                <td>
+                  <a href="/jobs/328">Grey Area</a>
+                </td>
+                <td><a href="/jobs/328">Operations Engineer for Shadow Cities</a></td>
+                <td align="center" style="padding:0">Anywhere </td>
+
+              </tr>
+
+              <tr>
+                <td>
+                  <a href="/jobs/327">Grey Area</a>
+                </td>
+                <td><a href="/jobs/327">Mobile Game Developer for Shadow Cities</a></td>
+                <td align="center" style="padding:0">Helsinki, Finland</td>
+
+              </tr>
+
+              <tr>
+                <td>
+                  <a href="/jobs/326">Mobile Joomla!</a>
+                </td>
+                <td><a href="/jobs/326">Technical Lead / Software Engineer (Web/Mobile)</a></td>
+                <td align="center" style="padding:0">Helsinki / Tallinn / Stockholm</td>
+
+              </tr>
+
+
+
+          </table>
+          <a href="/jobs" class="morelink">More jobs &raquo;</a>
+        </div>
+
+        <div class="etusivusisennys">
+
+          <h2>Upcoming Events</h2>
+          <table class="jobs"width="100%">
+            <thead>
+            <th align="left">Event</th>
+
+            <th align="left">Venue</th>
+            <th>Date</th>
+            </thead>
+            <tbody>
+
+
+              <tr>
+                <td>
+                  <a href="/events/263">Android Keynote #2</a>
+
+                </td>
+                <td>Aalto Venture Garage<br/>Betonimiehenkuja 3</td>
+                <td align="center" style="padding:0">08/02/2011</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <a href="/events/244">Aaltoes Fair</a>
+
+                </td>
+                <td>Design Factory<br/>Betonimiehenkuja 3</td>
+                <td align="center" style="padding:0">09/02/2011</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <a href="/events/266">Spinno WAKE UP: Start-up tiimi – vauhtia ja vaarallisia tilanteita, Case Eniram Oy</a>
+
+                </td>
+                <td>Innopoli 1<br/>Tekniikantie 12, 02150 Espoo</td>
+                <td align="center" style="padding:0">11/02/2011</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <a href="/events/239">Onnistamo 2011</a>
+
+                </td>
+                <td>Hanasaaren kulttuurikeskus<br/></td>
+                <td align="center" style="padding:0">11/02/2011</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+          <a href="/events" class="morelink">More events &raquo;</a>
+        </div>
+
+

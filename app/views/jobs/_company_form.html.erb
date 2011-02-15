@@ -1,0 +1,61 @@
+<h1>Add New Job Posting</h1>
+
+<% path = @new ? jobs_path : job_path(@job) %>
+<%= form_for @job, :url => path do |f| %>
+  <% if @job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+      <ul>
+        <% @job.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :company_id, 'Company'%>
+    <%= f.select :company_id,  Company.all.collect {|p| [ p.name, p.id ] }%>
+  </p>
+  <p>
+    Can't find your company? <%= link_to "Add it to the index", new_company_path %>.
+  </p>
+
+  <p>
+    <%= f.label :position %><br />
+    <%= f.text_field :position %>
+  </p>
+
+  <p>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </p>
+
+  <p>
+    <input type="radio" value="true" name="job_company[full_time]" id="full_time_true" checked="checked" /> Full time<br />
+    <input type="radio" value="false" name="job_company[full_time]" id="full_time_false" /> Part time
+  </p>
+
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.label :compensation %><br />
+    <%= f.text_field :compensation %>
+  </p>
+
+  <p>
+    <%= f.label :applying_instructions %><br />
+    <%= f.text_field :applying_instructions %>
+  </p>
+
+  <p>
+    <%= f.label :last_application_date %><br />
+    <%= f.date_select :last_application_date %>
+  </p>
+
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>

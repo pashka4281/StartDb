@@ -1,0 +1,55 @@
+<% content_for :left do %>
+  <p> </p>
+<%  end %>
+
+
+
+<h1>
+  <a href="/events" class="app">Events »</a>
+  <%=h @event.name %>
+</h1>
+<br />
+
+
+<% if it_my_event?(@event) or current_user &&  current_user.admin? %>
+  <p>
+    <%= link_to 'Edit', edit_event_path(@event) %>
+  </p>
+<% end %>
+
+<p>
+  <strong>Venue: </strong><%=h @event.venue %><br />
+  <strong>Address: </strong><%=h @event.address %><br />
+  <strong>Date: </strong><%= @event.taken_at.to_s(:client_reports) %><br />
+  <strong>Cost: </strong><%= @event.cost %><br />
+  <strong>Website: </strong><%= link_to @event.website, @event.website %><br />
+</p>
+
+<h4>Description:</h4>
+<p></p>
+
+<%=h simple_format(@event.description) %>
+
+<h4>Map:</h4>
+
+<div id="map">
+  <iframe width="470" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%=h @event.address  %>&amp;ie=UTF8&amp;z=14&amp;iwloc=A&amp;&amp;output=embed"></iframe>
+  <br />
+  <small>
+    <a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=<%=escape_javascript(@event.address)  %>&amp;&amp;ie=UTF8&amp;z=14&amp;iwloc=A&amp" style="color:#0000FF;text-align:left">Show bigger map</a></small>
+</div>
+<% if  current_user && current_user.admin? %>
+  <%= link_to 'Destroy', event_path(@event), :method => :delete, :confirm => 'Are you sure?' %>
+<% end %>
+
+<% if it_my_event?(@event) or current_user && current_user.admin? %>
+  <p>
+    <%= link_to 'Edit', edit_event_path(@event) %> | <%= link_to 'Back to events', events_path %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to 'Back to events', events_path %>
+  </p>
+<% end %>
+
+

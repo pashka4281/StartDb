@@ -1,0 +1,22 @@
+<div id="login_box">
+
+  <h1>Log In</h1>
+
+  <%= form_tag session_path do -%>
+    <%= label_tag 'email' %>
+    <%= text_field_tag 'email', @login %><br />
+
+    <%= label_tag 'password' %>
+    <%= password_field_tag 'password', nil %><br/>
+
+    <!-- Uncomment this if you want this functionality
+    <p><%= label_tag 'remember_me', 'Remember me' %>
+    <%= check_box_tag 'remember_me', '1', @remember_me %></p>
+    -->
+
+    <p>
+      <%= submit_tag 'Log in' %> or
+      <%= link_to "signup", signup_path %>
+    </p>
+  <% end -%>
+</div>

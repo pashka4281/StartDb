@@ -1,0 +1,44 @@
+<h1>
+  <%= link_to "Jobs » ", jobs_path, :class => 'app' %>
+  <%= @job.cofounders ? ' Looking for co-founder' : 'Looking for great startup to join' %>
+</h1>
+
+<% content_for :left do %>
+  <%= image_tag @job.person.picture.url(:big) %>
+<%  end %>
+
+<p>
+  <strong>Person:</strong>
+  <%= link_to @job.person.name, @job.person %><br />
+  <strong>Location:</strong>
+  <%=h @job.location %><br />
+  <strong>Type:</strong>
+  <%= @job.cofounders ? ' Looking for co-founders' : 'Looking for great startup to join' %><br />
+</p>
+
+<h4>Person's skillset:</h4>
+  <%= simple_format(h(@job.skill_set)) %>
+
+<h4>Ideal skillset looking for:</h4>
+  <%= simple_format(h(@job.ideal_skill_set)) %>
+
+<h4>Primary areas of interest:</h4>
+  <%= simple_format(h(@job.area_of_interests)) %>
+
+<h4>Other comments:</h4>
+  <%= simple_format(h(@job.other_comments)) %>
+
+<p>
+  <strong>Created:</strong>
+  <%= @job.created_at.to_s(:simple_date) %>
+</p>
+
+<p>
+  <strong>Last application date:</strong>
+  <%= @job.last_application_date.to_s(:simple_date) %><br/>
+</p>
+
+<p>
+  <%= link_to "Edit", :action => "edit" %> |
+  <a href="/jobs">View all jobs</a>
+</p>
