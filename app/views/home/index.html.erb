@@ -73,7 +73,6 @@
             </tr>
           </table>
           <a href="/people" class="morelink">More people &raquo;</a>
-
         </div>
 
 
@@ -89,45 +88,17 @@
             </thead>
             <tbody>
 
-
-              <tr>
-                <td>
-                  <a href="/jobs/329">Tuxera</a>
-                </td>
-                <td><a href="/jobs/329">GUI Specialist and Qt Developer</a></td>
-                <td align="center" style="padding:0">Helsinki</td>
-
-              </tr>
-
-              <tr>
-                <td>
-                  <a href="/jobs/328">Grey Area</a>
-                </td>
-                <td><a href="/jobs/328">Operations Engineer for Shadow Cities</a></td>
-                <td align="center" style="padding:0">Anywhere </td>
-
-              </tr>
-
-              <tr>
-                <td>
-                  <a href="/jobs/327">Grey Area</a>
-                </td>
-                <td><a href="/jobs/327">Mobile Game Developer for Shadow Cities</a></td>
-                <td align="center" style="padding:0">Helsinki, Finland</td>
-
-              </tr>
-
-              <tr>
-                <td>
-                  <a href="/jobs/326">Mobile Joomla!</a>
-                </td>
-                <td><a href="/jobs/326">Technical Lead / Software Engineer (Web/Mobile)</a></td>
-                <td align="center" style="padding:0">Helsinki / Tallinn / Stockholm</td>
-
-              </tr>
-
-
-
+              <% for j in @last_jobs %>
+                <tr>
+                  <td>
+                    <%= link_to h(j.company.name), j.company %>
+                  </td>
+                  <td><%= h(j.position) %></td>
+                  <td align="center" style="padding:0"><%=h j.location %></td>
+                </tr>
+              <% end %>
+                
+            </tbody>
           </table>
           <a href="/jobs" class="morelink">More jobs &raquo;</a>
         </div>
@@ -144,43 +115,15 @@
             </thead>
             <tbody>
 
-
-              <tr>
-                <td>
-                  <a href="/events/263">Android Keynote #2</a>
-
-                </td>
-                <td>Aalto Venture Garage<br/>Betonimiehenkuja 3</td>
-                <td align="center" style="padding:0">08/02/2011</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <a href="/events/244">Aaltoes Fair</a>
-
-                </td>
-                <td>Design Factory<br/>Betonimiehenkuja 3</td>
-                <td align="center" style="padding:0">09/02/2011</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <a href="/events/266">Spinno WAKE UP: Start-up tiimi – vauhtia ja vaarallisia tilanteita, Case Eniram Oy</a>
-
-                </td>
-                <td>Innopoli 1<br/>Tekniikantie 12, 02150 Espoo</td>
-                <td align="center" style="padding:0">11/02/2011</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <a href="/events/239">Onnistamo 2011</a>
-
-                </td>
-                <td>Hanasaaren kulttuurikeskus<br/></td>
-                <td align="center" style="padding:0">11/02/2011</td>
-              </tr>
-
+              <%  for e in @last_events%>
+                <tr>
+                  <td>
+                    <%= link_to h(e.name), e %>
+                  </td>
+                  <td><%= h(e.venue) %></td>
+                  <td align="center" style="padding:0"><%= e.taken_at.to_s(:simple_date) %></td>
+                </tr>
+              <% end %>
             </tbody>
 
           </table>

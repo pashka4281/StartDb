@@ -1,6 +1,6 @@
 class EventsController < InheritedResources::Base
   before_filter :login_required, :except => [:index, :show]
-  before_filter :owner_rights_required, :only => [:edit, :destroy]
+#  before_filter :owner_rights_required, :only => [:edit, :destroy]
 
   def index
     @curr_page = 'events'

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   validates :name,  :format     => { :with => Authentication.name_regex, :message => Authentication.bad_name_message },
                     :length     => { :maximum => 100 },
-                    :allow_nil  => true
+                    :presence   => true
 
   validates :email, :presence   => true,
                     :uniqueness => true,
@@ -24,6 +24,13 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_many :events
   has_many :jobs
+  has_many :authorizations, :dependent => :destroy
+
+  def self.create_from_hash!(hash)
+    p = new(:name => hash['user_info']['name'])
+    p.save(false)
+    return p
+  end
 
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.

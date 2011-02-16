@@ -1,0 +1,62 @@
+<% content_for :left do %>
+  Welcome to ArcticIndex, the primary information resource of Nordic and Baltic startups and
+  the entrepreneurs behind them. This is your one stop shop for getting the latest informationon these companies and people, whatever your need.
+  ArcticIndex allows anyone to register themselves or add new companies and people to the database.
+  All you need to do is signup with your e-mail, activate it and you're set to go.
+  Please note that we're only taking the first steps with this product, so everything might not be in top notch condition just yet.
+  Please let us know if you have any questions or suggestions regarding the site, we're more than happy
+  to help and listen to any wishes you may have.
+  <%#= javascript_include_tag "jquery.editinplace.js" %>
+<%  end %>
+<h1>User profile</h1>
+<p>
+  <%= link_to "Edit", :action => "edit" %>
+</p>
+<p>
+<h4>Your name:</h4>
+<div class="editable"><%=h current_user.name %></div>
+</p>
+
+<p>
+<h4>Your email</h4>
+<%=h current_user.email %>
+</p>
+
+<p>
+<h4>Your registration date</h4>
+<%= current_user.created_at.to_s(:client_reports) %>
+</p>
+
+
+<p>
+  <h4>Your external connections:</h4>
+  <% auth  =  current_user.authorizations%>
+  <% if auth.any? %>
+      <% for c in auth %>
+        <div class="authentication">
+          <%=provider_image(c.provider) %>
+          <div class="provider"><%= c.provider.titleize%></div>
+          <div class="uid">UID:<%= c.uid %></div>
+          <%= link_to "X", c, :confirm =>'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+        </div>
+      <% end %>
+  <% else %>
+    No external connections
+  <% end %>
+</p>
+
+<br />
+<br />
+<br />
+<br />
+<p>
+  Add another connection:<br />
+
+  <a href="/auth/twitter" class="auth_provider">
+    <%= image_tag "icons/twitter.png", :size => "64x64", :alt => "Twitter" %></a>
+  <a href="/auth/facebook" class="auth_provider">
+    <%= image_tag "icons/facebook.png", :size => "64x64",:alt => "Facebook" %></a>
+  <a href="/auth/linked_in" class="auth_provider">
+    <%= image_tag "icons/linkedin.png", :size => "64x64",  :alt => "OpenID" %></a>
+</p>
+

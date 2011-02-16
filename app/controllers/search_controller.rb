@@ -3,5 +3,4 @@ class SearchController < ApplicationController
     @companies = Company.search(params[:search])
     @people    = Person.search(params[:search])
   end
-
 end

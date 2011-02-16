@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def admin_only
     if not current_user.admin?
       flash[:error] = "You have no rights"
-       redirect_to '/'
+      redirect_to '/'
     end
   end
 end
