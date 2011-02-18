@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def navigation_tabs(cur_page = nil)
-    profile_tab = logged_in? ? "<li  #{cur_page == 'profile'?"class='active'":''}><a href=\"/profile\">profile</a></li>" : ""
+    profile_tab = logged_in? ? "<li  #{cur_page == 'profile'?"class='active'":''}><a href=\"/profile\">Profile</a></li>" : ""
     last_tab = logged_in? ? "<li id=\"login\"><a href=\"/logout\">Logout</a></li>" : "<li id=\"login\"><a href=\"/login\">Sign in</a></li>"
     admin_tab = (logged_in? && current_user.admin?) ? "<li #{cur_page == 'admin'?"class='active'":''}><a href=\"/admin\">Admin</a></li>" : ""
     <<-STR

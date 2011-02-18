@@ -9,23 +9,16 @@
   <h3>Filter people</h3>
   By nationality<br/>
   <p>
-    <a href="/people?search%5Bnationality_id%5D=1" class="app">Iceland (2)</a><br/>
-    <a href="/people?search%5Bnationality_id%5D=2" class="app">Norway (3)</a><br/>
-    <a href="/people?search%5Bnationality_id%5D=3" class="app">Denmark (12)</a><br/>
-    <a href="/people?search%5Bnationality_id%5D=4" class="app">Sweden (34)</a><br/>
-    <a href="/people?search%5Bnationality_id%5D=5" class="app">Finland (171)</a><br/>
-    <a href="/people?search%5Bnationality_id%5D=6" class="app">Russia (1)</a><br/>
-    <a href="/people?search%5Bnationality_id%5D=7" class="app">Estonia (15)</a><br/>
-    <a href="/people?search%5Bnationality_id%5D=8" class="app">Lithuania (4)</a><br/>
-    <a href="/people?search%5Bnationality_id%5D=9" class="app">Latvia (2)</a><br/>
-    <a href="/people?search%5Bnationality_id%5D=10" class="app">Other (36)</a><br/>
+    <% for c in @countries do %>
+        <%= link_to "#{c.name} (#{c.people.count})", "/investors?search[nationality_id]=#{c.id}" , :class => "app" %><br />
+    <% end %>
   </p>
 <%  end %>
 
 
 <table class="companylist">
   <tbody>
-    <% Person.investors.order('name').group_by{|x| x.name[0...1]}.each do |x,y|  %>
+    <% @persons.order('name').group_by{|x| x.name[0...1]}.each do |x,y|  %>
       <tr>
         <td colspan="3">
           <h4><%= x %></h4>
