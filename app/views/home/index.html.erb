@@ -23,7 +23,8 @@
 
   <table>
     <tr>
-      <% for c in @last_companies[0..3] do %>
+      <% l_comp = @last_companies.any? ? @last_companies : [] %>
+      <% for c in l_comp[0..3] do %>
           <td align="center" style="padding:10px;">
             <%= link_to c do %>
               <%= image_tag c.picture.url(:thumb) %>
@@ -33,7 +34,7 @@
         <% end %>
       </tr>
       <tr>
-        <% for c in @last_companies[4..-1] do %>
+        <% for c in l_comp[4..-1] do %>
             <td align="center" style="padding:10px;">
               <%= link_to c do %>
                 <%= image_tag c.picture.url(:thumb) %>
@@ -52,7 +53,8 @@
       <h2>Recent people</h2>
       <table>
         <tr>
-          <% for c in @last_people[0..3] do %>
+          <% l_peop = @last_people.any? ? @last_people : [] %>
+          <% for c in l_peop[0..3] do %>
               <td align="center" style="padding:10px;">
                 <%= link_to c do %>
                   <%= image_tag c.picture.url(:thumb) %>
@@ -62,7 +64,7 @@
             <% end %>
           </tr>
           <tr>
-            <% for c in @last_people[4..-1] do %>
+            <% for c in l_peop[4..-1] do %>
                 <td align="center" style="padding:10px;">
                   <%= link_to c do %>
                     <%= image_tag c.picture.url(:thumb) %>
@@ -87,8 +89,8 @@
 
             </thead>
             <tbody>
-
-              <% for j in @last_jobs %>
+              <% l_jobs = @last_jobs.any? ? @last_jobs : [] %>
+              <% for j in l_jobs %>
                 <tr>
                   <td>
                     <%= link_to h(j.company.name), j.company %>
