@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.4'
-
+gem 'sqlite3'
 gem 'mysql2' , '0.2.6'
 gem 'mongrel' , '1.1.5'
 gem 'inherited_resources', '1.2.1'
