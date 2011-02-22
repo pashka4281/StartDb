@@ -1,4 +1,4 @@
-require 'faker'
+#require 'faker'
 
 countries = ['Denmark', 'Estonia', 'Finland', 'Iceland', 'Latvia', 'Lithuania', 'Norway', 'Other', 'Russia', 'Sweden']
 
