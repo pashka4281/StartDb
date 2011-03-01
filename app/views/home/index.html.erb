@@ -13,9 +13,11 @@
   </p>
 <%  end %>
 
-<%= link_to signup_path do %>
-  <% image_tag 'signup_button.png' %>
-<%  end %>
+  <% if ! logged_in? %>
+    <%= link_to signup_path do %>
+      <% image_tag 'signup_button.png' %>
+    <%  end %>
+  <%end%>
 
 
 <div class="etusivusisennys">
@@ -23,7 +25,7 @@
 
   <table>
     <tr>
-      <% for c in (@last_companies.any? ? @last_companies[0..3]:[]) do %>
+      <% for c in @last_companies[0..3].to_a.compact do %>
           <td align="center" style="padding:10px;">
             <%= link_to c do %>
               <%= image_tag c.picture.url(:thumb) %>
@@ -33,8 +35,8 @@
         <% end %>
       </tr>
       <tr>
-       
-        <% for c in (@last_companies.any? ? @last_companies[4..-1]:[]) do %>
+
+        <% for c in @last_companies[4..-1].to_a.compact do %>
             <td align="center" style="padding:10px;">
               <%= link_to c do %>
                 <%= image_tag c.picture.url(:thumb) %>
@@ -53,7 +55,7 @@
       <h2>Recent people</h2>
       <table>
         <tr>
-          <% for c in (@last_people.any? ? @last_people[4..-1]:[]) do %>
+          <% for c in @last_people[0..3].to_a.compact do %>
               <td align="center" style="padding:10px;">
                 <%= link_to c do %>
                   <%= image_tag c.picture.url(:thumb) %>
@@ -63,7 +65,7 @@
             <% end %>
           </tr>
           <tr>
-            <% for c in (@last_people.any? ? @last_people[4..-1]:[]) do %>
+            <% for c in @last_people[4..-1].to_a.compact do %>
                 <td align="center" style="padding:10px;">
                   <%= link_to c do %>
                     <%= image_tag c.picture.url(:thumb) %>
@@ -97,7 +99,7 @@
                   <td align="center" style="padding:0"><%=h j.location %></td>
                 </tr>
               <% end %>
-                
+
             </tbody>
           </table>
           <a href="/jobs" class="morelink">More jobs &raquo;</a>
@@ -114,8 +116,7 @@
             <th>Date</th>
             </thead>
             <tbody>
-              <% @l_ev = @last_events.any? ? @last_events : [] %>
-              <%  for e in @l_ev%>
+              <%  for e in @last_events%>
                 <tr>
                   <td>
                     <%= link_to h(e.name), e %>
@@ -129,5 +130,3 @@
           </table>
           <a href="/events" class="morelink">More events &raquo;</a>
         </div>
-
-

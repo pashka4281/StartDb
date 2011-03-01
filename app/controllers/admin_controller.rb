@@ -3,6 +3,7 @@ class AdminController < ApplicationController
   
   def index
     @curr_page = 'admin'
+    @users = User.all
   end
 
 end

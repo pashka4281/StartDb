@@ -16,3 +16,9 @@
       <b><%= link_to a.abusable_type.titleize, a.abusable_type.titleize.constantize.find(a.abusable_id) %><br /></b>
     <% end %>
   <% end %>
+
+
+  <h2>Users:</h2>
+  <% for u in @users %>
+    <%= link_to u.name, u %><br />
+  <% end %>

@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @curr_page = 'profile'
     redirect '/' unless current_user && current_user.admin?
     @user = User.find(params[:id])  
   end
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
       # Protects against session fixation attacks, causes request forgery
       # protection if visitor resubmits an earlier form using back
       # button. Uncomment if you understand the tradeoffs.
-       reset session
+      # reset session
       self.current_user = @user # !! now logged in
       redirect_back_or_default('/', :notice => "Thanks for signing up!  You can now login.")
     else
