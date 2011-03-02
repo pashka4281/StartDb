@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def admin_only
-    if not current_user.admin?
+    unless current_user && current_user.admin?
       flash[:error] = "You have no rights"
       redirect_to '/'
     end
