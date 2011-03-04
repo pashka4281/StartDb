@@ -1,5 +1,7 @@
 ArcticIndexClone::Application.routes.draw do
 
+  resources :feedbacks
+
   match "jobs/job_select" =>'jobs#job_select', :method => :get, :as => :job_select
   resources :jobs, :except => [:destroy]
   

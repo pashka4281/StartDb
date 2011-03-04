@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'jquery-ui-1.8.10.custom.min' %>
+
 <h1>Administration</h1>
 <% content_for :left do %>
   Welcome to ArcticIndex, the primary information resource of Nordic and Baltic startups and
@@ -8,17 +10,67 @@
   Please let us know if you have any questions or suggestions regarding the site, we're more than happy
   to help and listen to any wishes you may have.
 <%  end %>
-  <h2>Reported abuses:</h2>
-  <% for a in Abuse.all %>
-    <% if a.was_read? %>
-      <%= link_to a.abusable_type.titleize, a.abusable_type.titleize.constantize.find(a.abusable_id) %><br />
-    <% else %>
-      <b><%= link_to a.abusable_type.titleize, a.abusable_type.titleize.constantize.find(a.abusable_id) %><br /></b>
-    <% end %>
-  <% end %>
 
 
-  <h2>Users:</h2>
-  <% for u in @users %>
-    <%= link_to u.name, u %><br />
-  <% end %>
+
+
+
+
+
+<div class="demo">
+
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">People abuses <%=raw((@new_pople_ab > 0)?"<b>(#{@new_pople_ab})</b>":'') %></a></li>
+      <li><a href="#tabs-2">Companies abuses</a></li>
+      <li><a href="#tabs-3">Users</a></li>
+    </ul>
+    <div id="tabs-1">
+      <% for a in @person_abuses %>
+        <% if a.was_read? %>
+          <%= link_to Person.find(a.abusable_id).name, a.abusable_type.titleize.constantize.find(a.abusable_id) %>
+        <% else %>
+          <b><%= link_to Person.find(a.abusable_id).name, a.abusable_type.titleize.constantize.find(a.abusable_id), :id => a.id, :class => 'ab_link' %></b>
+        <% end %>
+        --reported on <%= a.created_at.to_s(:client_reports) %>
+        <br />
+      <% end %>
+    </div>
+    <div id="tabs-2">
+      <% for a in @company_abuses %>
+        <% if a.was_read? %>
+          <%= link_to a.abusable_type.titleize, a.abusable_type.titleize.constantize.find(a.abusable_id) %><br />
+        <% else %>
+          <b><%= link_to a.abusable_type.titleize, a.abusable_type.titleize.constantize.find(a.abusable_id) %><br /></b>
+        <% end %>
+      <% end %>
+    </div>
+    <div id="tabs-3" style="height: 400px;">
+      <% for u in @users %>
+        <%= link_to u.name, u %><br />
+      <% end %>
+    </div>
+  </div>
+
+</div><!-- End demo -->
+
+
+
+<div class="demo-description" style="display: none; ">
+  <p>Click tabs to swap between content that is broken into logical sections.</p>
+</div><!-- End demo-description -->
+
+<%= javascript_include_tag "jquery-ui-1.8.10.custom.min.js"%>
+
+
+<script>
+  $(function() {
+    $( "#tabs" ).tabs({ selected: 0 });
+  });
+
+  $('.ab_link').click(function(event){
+    id = $(this).attr('id');
+    alert(id);
+    //console.log(this);
+});
+</script>

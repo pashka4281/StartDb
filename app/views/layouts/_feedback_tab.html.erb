@@ -1,0 +1,116 @@
+<div class="feedback-panel">
+      <a class="feedback-tab" href="http://www.your-feedback-formpage.com">Feedback</a>
+
+      <h3>Send Us Feedback</h3>
+      <div>
+
+        <form method="post" action="sendmail.php" style="padding:0px; margin: 0px; height: 200px;">
+          <table style="position: fixed;">
+            <tr>
+              <td>Email:</td>
+              <td><input id="feedback_email" name="email" type="text" /></td>
+            </tr>
+            <tr>
+              <td>Message:</td>
+              <td><textarea id="feedback_message" name="message" rows="10" col="30"></textarea></td>
+            </tr>
+            <tr>
+              <td colspan="2"><input type="submit" class="button" /></td>
+            </tr>
+          </table>
+
+        </form>
+
+      </div>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+      $(function() {
+
+        var feedbackTab = {
+
+          speed:300,
+          containerWidth:$('.feedback-panel').outerWidth(),
+          containerHeight:$('.feedback-panel').outerHeight(),
+          tabWidth:$('.feedback-tab').outerWidth(),
+
+          init:function(){
+            $('.feedback-panel').css('height',feedbackTab.containerHeight + 'px');
+
+            $('a.feedback-tab').click(function(event){
+
+              if ($('.feedback-panel').hasClass('open')) {
+                $('.feedback-panel').animate({left:'-' + feedbackTab.containerWidth}, feedbackTab.speed)
+                .removeClass('open');
+              } else {
+                $('.feedback-panel').animate({left:'0'},  feedbackTab.speed)
+                .addClass('open');
+              }
+              event.preventDefault();
+            });
+          }
+        };
+
+        feedbackTab.init();
+
+        $(".button").click(function() {
+          var email = $("input#email").val();
+          var message = $("textarea#message").val();
+          var response_message = "Thank you for your comment, see ya!"
+
+          var dataString = 'email=' + email + '&message=' + message;
+
+          $.ajax({
+            type: "POST",
+            url: "sendmail.php",
+            data: dataString,
+            success: function() {
+              $('#form-wrap').html("<div id='response-message'></div>");
+              $('#response-message').html("<p>" + response_message +"</p>")
+              .hide()
+              .fadeIn(500)
+              .animate({opacity: 1.0}, 1000)
+              .fadeIn(0, function(){
+                $('.feedback-panel')
+                .animate({left:'-' + (feedbackTab.containerWidth + feedbackTab.tabWidth)},
+                (feedbackTab.speed))
+                .removeClass('open');
+              })
+
+
+            }
+          });
+          return false;
+        });
+      });
+    </script>
+
+  <style type="text/css" media="screen">
+    .feedback-panel {
+      padding:20px;
+      width: 250px;
+      background: #e1eff1;
+      border: #29216d 1px solid;
+      position: fixed;
+      top:200px;
+      left:-291px;
+    }
+    .feedback-panel a.feedback-tab:hover{
+      background: transparent url(../images/feedbacktab_hover.gif) no-repeat scroll 0 0;
+    }
+
+    .feedback-panel a.feedback-tab {
+      background:transparent url(../images/feedbacktab.gif) no-repeat scroll 0 0;
+      border-width: 1px 1px 1px 0;
+      display:block;
+      height:99px;
+      left:51px;
+      bottom:21px;
+      position:relative;
+      float:right;
+      text-indent:-9999px;
+      width:30px;
+      outline:none;
+    }
+
+
+  </style>
